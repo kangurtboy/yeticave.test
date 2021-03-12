@@ -42,6 +42,18 @@ $lots = [
 	'img_url' => "img/lot-6.jpg"
 	]
 ];
+
+function price_format ($num){
+	/* Форматирование цены */
+	$min_value = 1000;
+if($num > $min_value){
+	$formated =  number_format($num , 0 , '.', ' ') . " ₽";
+	return $formated;
+}else{
+	return $num;
+}
+
+};
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -131,7 +143,7 @@ $lots = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$lot['price']?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=price_format($lot['price'])?></span>
                         </div>
                         <div class="lot__timer timer">
 

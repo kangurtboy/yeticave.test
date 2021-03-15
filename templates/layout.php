@@ -1,23 +1,5 @@
 <?php 
 require_once 'index.php';
-$title = "Главная";
-
-$is_auth = (bool) rand(0, 1);
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
-
-
-function price_format ($num){
-	/* Форматирование цены */
-	$min_value = 1000;
-if($num > $min_value){
-	$formated =  number_format($num , 0 , '.', ' ') . " ₽";
-	return $formated;
-}else{
-	return $num;
-}
-
-};
 ?>
 
 <!DOCTYPE html>

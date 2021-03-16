@@ -32,8 +32,12 @@ require_once '../data.php';
         </div>
         <ul class="lots__list">
 			<!-- Перебор обявлении -->
-			<?php 	foreach ($lots as $lot): ?>
-					<?=template_render('lot.php', $lot)?>	
-					<?php endforeach?>
+			<?php 
+			foreach ($lots as $lot){
+
+			print(template_render('lot.php', $lot));
+			
+			};
+				?>
 				</ul>
 			</section>

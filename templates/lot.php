@@ -1,5 +1,6 @@
 <?php  
-$lot = $template_arr;
+$lot = $arr;
+
 ?>
      <li class="lots__item lot">
 	 <div class="lot__image">

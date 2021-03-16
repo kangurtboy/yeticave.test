@@ -1,8 +1,9 @@
 <?php
 function template_render($template_path , $arr){
-	$template_arr =	$arr;
-	require_once $template_path;
-	$html =  ob_end_clean();
+	//Шаблонизатор
+	ob_start();
+	require $template_path;
+	$html =  ob_get_clean();
 	return $html;
 };
 

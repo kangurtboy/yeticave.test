@@ -8,7 +8,7 @@ function template_render($template_path , $arr){
 		$html =  ob_get_clean();
 		return $html;
 	}else{
-		return '';
+		return 'Файл '. $template_path . ' не найден';
 	}
 };
 

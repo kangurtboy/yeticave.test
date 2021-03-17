@@ -2,9 +2,14 @@
 function template_render($template_path , $arr){
 	//Шаблонизатор
 	ob_start();
-	require $template_path;
-	$html =  ob_get_clean();
-	return $html;
+	if(file_exists($template_path)){
+
+		require $template_path;
+		$html =  ob_get_clean();
+		return $html;
+	}else{
+		return '';
+	}
 };
 
 function price_format($num)

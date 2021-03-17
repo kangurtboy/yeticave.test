@@ -1,7 +1,7 @@
-<?php
-require_once '../functions.php';
-require_once '../data.php';
+<?php 
+$lots = $arr;
 ?>
+
 <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
@@ -35,7 +35,7 @@ require_once '../data.php';
 			<?php 
 			foreach ($lots as $lot){
 
-			print(template_render('lot.php', $lot));
+			print(template_render('templates/lot.php', $lot));
 			
 			};
 				?>

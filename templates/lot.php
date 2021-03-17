@@ -15,7 +15,8 @@ $lot = $arr;
 				 <span class="lot__cost"><?=htmlspecialchars( price_format($lot['price']))?></span>
 			 </div>
 			 <div class="lot__timer timer">
-
+				 <!-- Таймер лота -->
+				<?=timer() ?>
 			 </div>
 		 </div>
 	 </div>

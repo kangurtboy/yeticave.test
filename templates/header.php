@@ -1,3 +1,7 @@
+<?php 
+$user = $arr;
+
+?>
 <header class="main-header">
     <div class="main-header__container container">
         <h1 class="visually-hidden">YetiCave</h1>
@@ -12,12 +16,12 @@
 
         <nav class="user-menu">
 			<!-- здесь должен быть PHP код для показа аватара пользователя -->
-			<?php if($is_auth) : ?>
+			<?php if($user['is_auth']) : ?>
 			<div class="user-menu__image">
-				<img src="<?=$user_avatar?>" alt="Ползователь">
+				<img src="<?=$user['avatar']?>" alt="Ползователь">
 			</div>
 			<div class="user-menu__logged">
-				<p><?=$user_name?></p>
+				<p><?=$user['name']?></p>
 			</div>
 			<?else : ?>
 

@@ -1,6 +1,8 @@
 <?php 
+//шаблон гоавной странице
 $lots = $arr;
 ?>
+
 
 <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>

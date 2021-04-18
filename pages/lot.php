@@ -127,8 +127,11 @@ require_once '../lots.php';
     </div>
   </section>
 </main>
-<?=template_render('../templates/footer.php', $categories);
-?>
 
+<form action="" method="GET" class="test">
+
+<input type="text" name="user">
+<input type="submit" value="just">
+</form>
 </body>
 </html>

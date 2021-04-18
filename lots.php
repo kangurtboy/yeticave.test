@@ -1,7 +1,7 @@
 <?php
 
 //Открытые лоты
-$lots = [
+$open_lots = [
 	['name' => "2014 Rossignol District Snowboard",
 		'category' => "Доски и лыжи",
 		'price' => 10999,

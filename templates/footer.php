@@ -49,3 +49,7 @@ $categories = $arr;
         </div>
     </div>
 </footer>
+
+</body>
+
+</html>

@@ -7,7 +7,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<?php var_dump($open_lots); ?>
 	<!-- Отрисовка шапки -->
 <?=template_render('templates/header.php' , $user)?>
 <main class="container">

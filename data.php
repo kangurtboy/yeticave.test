@@ -18,5 +18,5 @@ $title = "Главная";
 $user = [
 	"is_auth"=> (bool) rand(0, 1),
 	"name"=> 'Константин',
-	"avatar"=> 'img/user.jpg'
+	"avatar"=> $_SERVER['HTTP_REFERER'] .'img/user.jpg'
 ];

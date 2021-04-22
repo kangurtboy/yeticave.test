@@ -1,32 +1,14 @@
 <?php 
 require_once '../lots.php';
+require_once '../functions.php';
+require_once '../data.php';
 ?>
 
-<!-- Отрисовка футер -->
+	<!-- Отрисовка шапки -->
+	<?=template_render('/templates/header.php' , $user)?>
 
 <main>
-  <nav class="nav">
-    <ul class="nav__list container">
-      <li class="nav__item">
-        <a href="all-lots.html">Доски и лыжи</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Крепления</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Ботинки</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Одежда</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Инструменты</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Разное</a>
-      </li>
-    </ul>
-  </nav>
+
   <section class="lot-item container">
     <h2>DC Ply Mens 2016/2017 Snowboard</h2>
     <div class="lot-item__content">
@@ -128,10 +110,8 @@ require_once '../lots.php';
   </section>
 </main>
 
-<form action="" method="GET" class="test">
-
-<input type="text" name="user">
-<input type="submit" value="just">
-</form>
+<!-- Отрисовка футер -->
+<?=template_render('/templates/footer.php', $categories);
+?>
 </body>
 </html>

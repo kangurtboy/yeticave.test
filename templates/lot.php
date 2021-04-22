@@ -10,7 +10,7 @@ $index  = array_search($lot , $open_lots);
 	 <div class="lot__info">
 		 <span class="lot__category"><?=$lot['category']?></span>
 		 <h3 class="lot__title">
-			 <a class="text-link" href="<?='lot/'. $index?>"><?=htmlspecialchars($lot['name'])?></a></h3>
+			 <a class="text-link" href="<?='pages/lot.php?lot='. $index?>"><?=htmlspecialchars($lot['name'])?></a></h3>
 		 <div class="lot__state">
 			 <div class="lot__rate">
 				 <span class="lot__amount">Стартовая цена</span>

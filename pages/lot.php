@@ -2,21 +2,25 @@
 require_once '../lots.php';
 require_once '../functions.php';
 require_once '../data.php';
+require_once '../config.php';
+
+$currrent_lot = $open_lots[$_GET['lot']];
+
 ?>
 
 	<!-- Отрисовка шапки -->
 	<?=template_render('/templates/header.php' , $user)?>
-
+<!-- Cтраница лота -->
 <main>
 
   <section class="lot-item container">
-    <h2>DC Ply Mens 2016/2017 Snowboard</h2>
+    <h2><?=$currrent_lot['name']?></h2>
     <div class="lot-item__content">
       <div class="lot-item__left">
         <div class="lot-item__image">
-          <img src="img/lot-image.jpg" width="730" height="548" alt="Сноуборд">
+          <img src=<?=$_SERVER['HTTP_REFERER'] . $currrent_lot['img_url']?> width="730" height="548" alt="Сноуборд">
         </div>
-        <p class="lot-item__category">Категория: <span>Доски и лыжи</span></p>
+        <p class="lot-item__category">Категория: <span><?=$currrent_lot['category']?></span></p>
         <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
           снег
           мощным щелчкоми четкими дугами. Стекловолокно Bi-Ax, уложенное в двух направлениях, наделяет этот
@@ -31,15 +35,15 @@ require_once '../data.php';
       <div class="lot-item__right">
         <div class="lot-item__state">
           <div class="lot-item__timer timer">
-            10:54:12
+		  <?=timer() ?>
           </div>
           <div class="lot-item__cost-state">
             <div class="lot-item__rate">
               <span class="lot-item__amount">Текущая цена</span>
-              <span class="lot-item__cost">10 999</span>
+              <span class="lot-item__cost"><?=$currrent_lot['price']?></span>
             </div>
             <div class="lot-item__min-cost">
-              Мин. ставка <span>12 000 р</span>
+              Мин. ставка <span><?=$currrent_lot['price'] / 10 ?></span>
             </div>
           </div>
           <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
@@ -56,6 +60,8 @@ require_once '../data.php';
 		  <?php 
 		  
 		  foreach($bets as $bet)
+
+		/* перебор ставок */
 		print  (template_render('/templates/bet.php' , $bet));
 
 		 ?>

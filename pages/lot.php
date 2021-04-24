@@ -6,11 +6,14 @@ require_once '../config.php';
 
 $currrent_lot = $open_lots[$_GET['lot']];
 
+$root_dir = 'http://' . $_SERVER['SERVER_NAME'] . '/';
 ?>
 
 	<!-- Отрисовка шапки -->
 	<?=template_render('/templates/header.php' , $user)?>
 <!-- Cтраница лота -->
+
+<? if($currrent_lot !== null) : ?>
 <main>
 
   <section class="lot-item container">
@@ -18,7 +21,7 @@ $currrent_lot = $open_lots[$_GET['lot']];
     <div class="lot-item__content">
       <div class="lot-item__left">
         <div class="lot-item__image">
-          <img src=<?=$_SERVER['HTTP_REFERER'] . $currrent_lot['img_url']?> width="730" height="548" alt="Сноуборд">
+          <img src=<?=$sever_dir . $currrent_lot['img_url']?> width="730" height="548" alt="Сноуборд">
         </div>
         <p class="lot-item__category">Категория: <span><?=$currrent_lot['category']?></span></p>
         <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
@@ -72,6 +75,10 @@ $currrent_lot = $open_lots[$_GET['lot']];
     </div>
   </section>
 </main>
+<? else : ?>
+
+<h1>404 Страница не найдена</h1>
+<?endif?>
 
 <!-- Отрисовка футер -->
 <?=template_render('/templates/footer.php', $categories);

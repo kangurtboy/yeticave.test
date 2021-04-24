@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 // ставки пользователей, которыми надо заполнить таблицу
 $bets = [
     ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
@@ -18,5 +19,5 @@ $title = "Главная";
 $user = [
 	"is_auth"=> (bool) rand(0, 1),
 	"name"=> 'Константин',
-	"avatar"=> $_SERVER['HTTP_REFERER'] . 'img/user.jpg'
+	"avatar"=> $server_name . 'img/user.jpg'
 ];

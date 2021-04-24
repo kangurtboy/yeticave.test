@@ -1,6 +1,6 @@
 <?php 
+require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 $user = $arr;
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -8,8 +8,8 @@ $user = $arr;
 <head>
     <meta charset="UTF-8">
     <title><?=$title?></title>
-    <link href=<?=$_SERVER['HTTP_REFERER'] . '/css/normalize.min.css'?> rel="stylesheet">
-    <link href=<?=$_SERVER['HTTP_REFERER'] . '/css/style.css'?> rel="stylesheet">
+    <link href=<?=$server_name . '/css/normalize.min.css'?> rel="stylesheet">
+    <link href=<?=$server_name . '/css/style.css'?> rel="stylesheet">
 </head>
 
 <body>
@@ -18,7 +18,7 @@ $user = $arr;
     <div class="main-header__container container">
         <h1 class="visually-hidden">YetiCave</h1>
         <a class="main-header__logo">
-            <img src=<?=$_SERVER['HTTP_REFERER'] .'img/logo.svg'?> width="160" height="39" alt="Логотип компании YetiCave">
+            <img src=<?=$server_name .'img/logo.svg'?> width="160" height="39" alt="Логотип компании YetiCave">
         </a>
         <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
             <input type="search" name="search" placeholder="Поиск лота">

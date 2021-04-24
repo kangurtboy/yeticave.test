@@ -5,8 +5,6 @@ require_once '../data.php';
 require_once '../config.php';
 
 $currrent_lot = $open_lots[$_GET['lot']];
-
-$root_dir = 'http://' . $_SERVER['SERVER_NAME'] . '/';
 ?>
 
 	<!-- Отрисовка шапки -->
@@ -21,7 +19,7 @@ $root_dir = 'http://' . $_SERVER['SERVER_NAME'] . '/';
     <div class="lot-item__content">
       <div class="lot-item__left">
         <div class="lot-item__image">
-          <img src=<?=$sever_dir . $currrent_lot['img_url']?> width="730" height="548" alt="Сноуборд">
+          <img src=<?=$server_name . $currrent_lot['img_url']?> width="730" height="548" alt="Сноуборд">
         </div>
         <p class="lot-item__category">Категория: <span><?=$currrent_lot['category']?></span></p>
         <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив

@@ -9,6 +9,8 @@ $currrent_lot = $open_lots[$_GET['lot']];
 
 	<!-- Отрисовка шапки -->
 	<?=template_render('/templates/header.php' , $user)?>
+	<?=template_render('/templates/nav.php' , [])?>
+
 <!-- Cтраница лота -->
 
 <? if($currrent_lot !== null) : ?>

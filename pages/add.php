@@ -55,10 +55,14 @@ if(!empty($_POST)){
 	}else if($img['size'] > $img_max_size){
 		$errors['img'] = 'Слишком большой файл. <br/>  Загрузите фотографии с размером до 5mb!';
 	} else {
+
+		if(!is_dir($documet_root . './uploads/')){
+			
+			mkdir($documet_root . './uploads/');
+		}
 		move_uploaded_file($img_path ,  $documet_root . './uploads/' . $img['name']);
 	}
 };
-
 
 //Отрисовка шапки
  echo template_render('/templates/header.php' , $user);

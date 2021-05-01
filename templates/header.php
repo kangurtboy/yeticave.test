@@ -1,6 +1,8 @@
 <?php 
-require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
-$user = $arr;
+require $_SERVER['DOCUMENT_ROOT'] . './config.php';
+require_once $documet_root . './data.php';
+
+$title = $arr['title'];
 ?>
 <!DOCTYPE html>
 <html lang="ru">

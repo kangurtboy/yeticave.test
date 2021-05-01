@@ -1,12 +1,21 @@
+<?php 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/data.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/functions.php';
 
-	<!-- Отрисовка шапки -->
-<?=template_render('templates/header.php' , $user)?>
-<main class="container">
-	<!-- Отрисовка контент страниц -->
-<?=template_render('templates/index.php' ,$open_lots)?>
-</main>
-<!-- Отрисовка футер -->
-<?=template_render('templates/footer.php', $categories);
-?>
+$content = $arr;
+
+//Отрисовка шапки -->
+print (template_render('templates/header.php' ,[ 'title' => $content['title']]));
+
+print ('<main class="container">');
+
+//Отрисовка контент страниц -->
+print($content['main_content']);
+
+ print ('</main>');
+
+// Отрисовка футер -->
+print ( template_render('templates/footer.php', $categories));
 
 

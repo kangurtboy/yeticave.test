@@ -64,27 +64,27 @@ if(!empty($_POST)){
 	}
 };
 
-//Отрисовка шапки
- echo template_render('/templates/header.php' , $user);
- echo template_render('/templates/nav.php' , []);
+$form_content = template_render('/templates/add_form.php' , $errors);
+$card_content = template_render('/templates/lot.php' , [
+	'name'=> $lot['lot-name'],
+	'category'=> $lot['category'],
+	'price' => $lot['lot-rate'],
+	'img_url' => $server_name . '/uploads/' . $img['name']
+]);
 
+ 
 if(!count($errors) && $_SERVER['REQUEST_METHOD'] == 'POST'){
-		//Отрисовка карточта лота
-	echo template_render('/templates/lot.php' , [
-		'name'=> $lot['lot-name'],
-		'category'=> $lot['category'],
-		'price' => $lot['lot-rate'],
-		'img_url' => $server_name . '/uploads/' . $img['name']
-	]);
+	
+	//Отрисовка карточта лота
+	print(template_render('/templates/layout.php' , ['title'=> $lot['lot-name'],
+	'main_content'=> $card_content,
+	'nav'=> $categories]));
 }else{
-	echo template_render('/templates/add_form.php' , $errors);
-}
-
-
 	//Отрисовка формы
-
-
-//Отрисовка футер
-echo template_render('/templates/footer.php', $categories);
+	print(template_render('/templates/layout.php' , ['title'=> 'Добавление нового лота',
+	'main_content'=> $form_content,
+	'nav'=> $categories
+	]));
+}
 
 ?>

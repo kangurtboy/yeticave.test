@@ -8,8 +8,8 @@ $currrent_lot = $open_lots[$_GET['lot']];
 ?>
 
 	<!-- Отрисовка шапки -->
-	<?=template_render('/templates/header.php' , $user)?>
-	<?=template_render('/templates/nav.php' , [])?>
+	<?=template_render('/templates/header.php' , ['title'=> $currrent_lot['name']])?>
+	<?=template_render('/templates/nav.php' , $categories)?>
 
 <!-- Cтраница лота -->
 

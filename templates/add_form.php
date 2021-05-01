@@ -18,8 +18,6 @@ if($is_post_method && empty(!$errors['img'])){
 }
 ?>
 
-<main>
-
   <form class="form form--add-lot container <?= empty($errors) ? '' : 'form--invalid'?>" action="add.php" method="post" name="lot" enctype="multipart/form-data"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
     <div class="form__container-two">
@@ -83,4 +81,3 @@ if($is_post_method && empty(!$errors['img'])){
     <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
     <button type="submit" class="button">Добавить лот</button>
   </form>
-</main>

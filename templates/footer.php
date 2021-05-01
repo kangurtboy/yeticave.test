@@ -1,18 +1,10 @@
 <?php 
-$categories = $arr;
+require $_SERVER['DOCUMENT_ROOT'] . './data.php';
 ?>
 <footer class="main-footer">
-    <nav class="nav">
-        <ul class="nav__list container">
-			<!-- Перебор список категории -->
-			<?php 
-			foreach($categories as $category){
-
-			print(template_render('templates/categories.php', $category));
-			}
-			?>
-        </ul>
-    </nav>
+	<!-- Перебор список категории -->
+	<?php print(template_render('/templates/nav.php', $categories))?>;
+		
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
             <p>© 2018, YetiCave</p>

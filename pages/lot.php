@@ -5,6 +5,26 @@ require_once '../data.php';
 require_once '../config.php';
 
 $currrent_lot = $open_lots[$_GET['lot']];
+
+//Сохранение история просмотра лотов в coockies
+$currrent_lot_id = array_search($currrent_lot , $open_lots);
+
+if (isset($_COOKIE['history'])) {
+
+	$history = json_decode($_COOKIE['history']);
+	
+} else {
+
+	$history = [];
+}
+
+
+if (!in_array($currrent_lot_id , $history)){
+	
+	array_push($history , $currrent_lot_id);
+	setcookie('history' , json_encode($history), time() + 10000 ,'/');
+}
+
 ?>
 
 	<!-- Отрисовка шапки -->

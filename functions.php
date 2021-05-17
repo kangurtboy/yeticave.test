@@ -38,3 +38,29 @@ function timer(){
  return $hour_left . ' : ' . $minutes_left;
 
 };
+
+function validate_fields (array $all_fields , array $numeric_fields){
+	//Валидация полей форм
+	
+	$errors = [];
+	if(!empty($_POST)){
+
+	
+		foreach ($numeric_fields as $fild){
+			//Проверка чисел
+			if(!filter_var($all_fields[$fild] , FILTER_VALIDATE_INT)){
+				$errors[$fild] = "Введите только число";
+			}
+		}
+	
+		foreach($all_fields as $key=>$fild){
+			//Проверка на пустота
+			if(empty($fild)){
+				$errors[$key] = 'Заполните это поля пожалуйста';
+			}
+	
+			$all_fields[$key] = htmlspecialchars($fild);
+		}
+	}
+	return $errors;
+}

@@ -2,7 +2,7 @@
 function template_render($template , $arr){
 	//Шаблонизатор
 	ob_start();
-$template_path = $_SERVER['DOCUMENT_ROOT'] . "/$template";
+	$template_path = $_SERVER['DOCUMENT_ROOT'] . "/$template";
 	if(file_exists($template_path)){
 
 		require $template_path;

@@ -3,31 +3,14 @@ require_once '../functions.php';
 require_once '../data.php';
 require_once '../config.php';
 //Валидация формы
-$errors = [];
-
 
 $int_filelds = ['lot-rate' , 'lot-step'];
+
+$errors = validate_fields($_POST , $int_filelds);
 
 if(!empty($_POST)){
 
 	$lot = $_POST;
-
-	foreach ($int_filelds as $fild){
-		//Проверка чисел
-
-		if(!filter_var($lot[$fild] , FILTER_VALIDATE_INT)){
-			$errors[$fild] = "Введите только число";
-		}
-	}
-
-	foreach($lot as $key=>$fild){
-		//Проверка на пустота
-		if(empty($fild)){
-			$errors[$key] = 'Заполните это поля пожалуйста';
-		}
-
-		$lot[$key] = htmlspecialchars($fild);
-	}
 
 	if (!in_array($lot['category'] , $categories)){
 		//Проверка Категории

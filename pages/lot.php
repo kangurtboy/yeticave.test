@@ -24,17 +24,13 @@ if (!in_array($currrent_lot_id , $history)){
 	array_push($history , $currrent_lot_id);
 	setcookie('history' , json_encode($history), time() + 10000 ,'/');
 }
-
+ob_start();
 ?>
-
-	<!-- Отрисовка шапки -->
-	<?=template_render('/templates/header.php' , ['title'=> $currrent_lot['name']])?>
-	<?=template_render('/templates/nav.php' , $categories)?>
 
 <!-- Cтраница лота -->
 
-<? if($currrent_lot !== null) : ?>
 <main>
+	<? if($currrent_lot !== null) : ?>
 
   <section class="lot-item container">
     <h2><?=$currrent_lot['name']?></h2>
@@ -94,14 +90,18 @@ if (!in_array($currrent_lot_id , $history)){
       </div>
     </div>
   </section>
+  <? else : ?>
+  
+  <h1>404 Страница не найдена</h1>
+  <?endif?>
 </main>
-<? else : ?>
 
-<h1>404 Страница не найдена</h1>
-<?endif?>
+<?php
+$page_content = ob_get_clean();
 
-<!-- Отрисовка футер -->
-<?=template_render('/templates/footer.php', $categories);
-?>
-</body>
-</html>
+$content = template_render('templates/layout.php' ,['title'=> $currrent_lot['name'] ,
+'nav' => $categories,
+'main_content'=> $page_content
+]);
+
+print ($content);

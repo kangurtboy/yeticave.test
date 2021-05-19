@@ -13,19 +13,30 @@ $errors = validate_fields($_POST ,[]);
 $email = $_POST['email'];
 $password =  $_POST['password'];
 $password_hash = password_hash($password ,PASSWORD_DEFAULT);
+$search_email = search_user_by_email($email , $users);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	//проверка Email
-	if(!filter_var($email , FILTER_VALIDATE_EMAIL)){
+	if(!$search_email && $email !== ''){
+
+		$errors['email'] = 'Не такого ползователя';
+
+	}elseif(!filter_var($email , FILTER_VALIDATE_EMAIL) && $email !== ''){
+
 		$errors['email'] = 'Введите правилный адрес электроный почту';
 	}
 
 
-	foreach ($users as $user){
-		//проверка пароля
-	if($user['email']=== $email && password_verify($password , $user['password'])){
-		print('Такой ползовател ест!');
-	}
+	foreach ($users as $user) {
+		//поиск ползователя
+		if($email === $user['email']){
+			if(!password_verify($password, $user['password']) && $password !== ''){
+				$errors['password'] = 'Вы ввели неверный пароль';
+			}
+		}
+	if ($user['email'] === $email && password_verify($password, $user['password'])) {
+			print('Такой ползовател ест!');
+		}
 	}
 }
 

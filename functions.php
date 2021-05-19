@@ -1,4 +1,5 @@
 <?php
+require_once 'userdata.php';
 function template_render($template , $arr){
 	//Шаблонизатор
 	ob_start();
@@ -63,4 +64,15 @@ function validate_fields (array $all_fields , array $numeric_fields){
 		}
 	}
 	return $errors;
+}
+
+function search_user_by_email($email , $arr){
+	//поиск ползователя по email
+	$emails = [];
+
+	foreach ($arr as $user){
+		array_push($emails , $user['email']);
+	}
+	return in_array($email , $emails);
+
 }

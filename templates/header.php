@@ -1,6 +1,12 @@
 <?php 
 require $_SERVER['DOCUMENT_ROOT'] . './config.php';
 require $_SERVER['DOCUMENT_ROOT'] . './data.php';
+session_start();
+$user_is_active = isset($_SESSION['user']);
+
+if($user_is_active){
+	$user = $_SESSION['user'];
+}
 
 $title = $arr['title'];
 ?>
@@ -30,7 +36,7 @@ $title = $arr['title'];
 
         <nav class="user-menu">
 			<!-- здесь должен быть PHP код для показа аватара пользователя -->
-			<?php if($user['is_auth']) : ?>
+			<?php if($user_is_active) : ?>
 			<div class="user-menu__image">
 				<img src="<?=$user['avatar']?>" alt="Ползователь">
 			</div>
@@ -44,7 +50,7 @@ $title = $arr['title'];
 						<a href="#">Регистрация</a>
 					</li>
 					<li class="user-menu__item">
-						<a href="#">Вход</a>
+						<a href=<?=$server_name . 'pages/login.php'?>>Вход</a>
 					</li>
 				</ul>
 			<?php endif ?>

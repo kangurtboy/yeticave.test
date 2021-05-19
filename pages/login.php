@@ -35,7 +35,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			}
 		}
 	if ($user['email'] === $email && password_verify($password, $user['password'])) {
-			print('Такой ползовател ест!');
+		//Если ползовател ввел корректный данные
+		header('Location: /');
+		session_start();
+		$_SESSION['user'] = $user;
+		
 		}
 	}
 }

@@ -3,7 +3,7 @@ require_once '../lots.php';
 require_once '../functions.php';
 require_once '../data.php';
 require_once '../config.php';
-
+session_start();
 $currrent_lot = $open_lots[$_GET['lot']];
 
 //Сохранение история просмотра лотов в coockies
@@ -51,6 +51,7 @@ ob_start();
           посмотрите на Вашу доску и улыбнитесь, крутая графика от Шона Кливера еще никого не оставляла
           равнодушным.</p>
       </div>
+	  <?if(isset($_SESSION['user'])) :?>
       <div class="lot-item__right">
         <div class="lot-item__state">
           <div class="lot-item__timer timer">
@@ -88,6 +89,7 @@ ob_start();
           </table>
         </div>
       </div>
+	  <?endif?>
     </div>
   </section>
   <? else : ?>

@@ -31,8 +31,10 @@ $title = $arr['title'];
         <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
             <input type="search" name="search" placeholder="Поиск лота">
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
-        </form>
-        <a class="main-header__add-lot button" href=<?=$server_name . 'pages/add.php'?>>Добавить лот</a>
+		</form>
+		<?if(isset($_SESSION['user'])) :?>
+		<a class="main-header__add-lot button" href=<?=$server_name . 'pages/add.php'?>>Добавить лот</a>
+		<?endif?>
 
         <nav class="user-menu">
 			<!-- здесь должен быть PHP код для показа аватара пользователя -->

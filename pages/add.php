@@ -46,8 +46,13 @@ if(!empty($_POST)){
 		move_uploaded_file($img_path ,  $documet_root . './uploads/' . $img['name']);
 	}
 };
+session_start();
+if(isset($_SESSION['user'])){
 
-$form_content = template_render('/templates/add_form.php' , $errors);
+	$form_content = template_render('/templates/add_form.php' , $errors);
+}else{
+	$form_content = template_render('/templates/403.php' , []);
+}
 $card_content = template_render('/templates/lot.php' , [
 	'name'=> $lot['lot-name'],
 	'category'=> $lot['category'],

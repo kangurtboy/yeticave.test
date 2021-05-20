@@ -42,6 +42,7 @@ $title = $arr['title'];
 			</div>
 			<div class="user-menu__logged">
 				<p><?=$user['name']?></p>
+				<a href= <?=$server_name . "logout.php"?>>Выход</a>
 			</div>
 			<?else : ?>
 

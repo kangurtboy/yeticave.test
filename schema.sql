@@ -33,3 +33,8 @@ lot_id INT ,
 price INT ,
 rate_date DATETIME 
 );
+
+/* индексация */
+CREATE INDEX lot_rate ON rate_history (user_id , price);
+CREATE INDEX user_email ON users (email);
+CREATE INDEX lot ON lots (id, user_id , name);

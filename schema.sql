@@ -15,7 +15,7 @@ category_id INT ,
 user_id INT ,
 cost INT, 
 min_cost INT ,
-time_out DATETIME
+time_out DATE
 );
 
 /* категории */
@@ -25,12 +25,12 @@ name VARCHAR(64) NOT NULL
 );
 
 /* история ставок */
-CREATE TABLE rate_history (
+CREATE TABLE rates (
 id INT AUTO_INCREMENT PRIMARY KEY ,
 user_id INT ,
 lot_id INT ,
 price INT ,
-rate_date DATETIME 
+rate_date DATETIME DEFAULT NOW()
 );
 
 /* индексация */

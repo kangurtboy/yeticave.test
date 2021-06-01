@@ -1,5 +1,6 @@
 <?php
 require_once 'userdata.php';
+require_once 'config.php';
 function template_render($template , $arr){
 	//Шаблонизатор
 	ob_start();
@@ -75,4 +76,29 @@ function search_user_by_email($email , $arr){
 	}
 	return in_array($email , $emails);
 
+}
+
+function upload_img($img , $upload_path){
+	//Проверка и загрузка изображение
+	$error = '';
+	$allowed_types = ['image/jpeg' , 'image/png' , 'image/bmp', 'image/webp'];
+	$img_path = $img['tmp_name'];
+	$img_max_size = 5000000;
+
+	if (empty($img_path)) {
+		$error = "Загрузите изображение";
+
+	} else if (!in_array($img['type'], $allowed_types)) {
+		$error = 'Неверный тип файла';
+	}else if($img['size'] > $img_max_size){
+		$error = 'Слишком большой файл. <br/>  Загрузите фотографии с размером до 5mb!';
+	} else {
+
+		if(!is_dir($upload_path)){
+			
+			mkdir($upload_path);
+		}
+		move_uploaded_file($img_path ,  $upload_path .  $img['name']);
+	}
+	return $error;
 }

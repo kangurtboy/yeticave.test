@@ -25,25 +25,9 @@ if(!empty($_POST)){
 	}
 
 	//Проверка Изображение
-	$allowed_types = ['image/jpeg' , 'image/png' , 'image/bmp', 'image/webp'];
-	$img = $_FILES['img'];
-	$img_path = $img['tmp_name'];
-	$img_max_size = 5000000;
-
-	if (empty($img_path)) {
-		$errors['img'] = "Загрузите изображение";
-
-	} else if (!in_array($img['type'], $allowed_types)) {
-		$errors['img'] = 'Неверный тип файла';
-	}else if($img['size'] > $img_max_size){
-		$errors['img'] = 'Слишком большой файл. <br/>  Загрузите фотографии с размером до 5mb!';
-	} else {
-
-		if(!is_dir($documet_root . './uploads/')){
-			
-			mkdir($documet_root . './uploads/');
-		}
-		move_uploaded_file($img_path ,  $documet_root . './uploads/' . $img['name']);
+	$imgage_result = upload_img($_FILES['img'] ,  $documet_root . '/uploads/');
+	if($imgage_result){
+		$errors['img'] = $imgage_result;
 	}
 };
 session_start();
@@ -57,8 +41,9 @@ $card_content = template_render('/templates/lot.php' , [
 	'name'=> $lot['lot-name'],
 	'category'=> $lot['category'],
 	'price' => $lot['lot-rate'],
-	'img_url' => $server_name . '/uploads/' . $img['name']
+	'img_url' => $server_name . '/uploads/' . $_FILES['img']['name']
 ]);
+var_dump($server_name . '/uploads/' . $_FILES['img']['name']);
 
  
 if(!count($errors) && $_SERVER['REQUEST_METHOD'] == 'POST'){

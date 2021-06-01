@@ -43,7 +43,6 @@ $card_content = template_render('/templates/lot.php' , [
 	'price' => $lot['lot-rate'],
 	'img_url' => $server_name . '/uploads/' . $_FILES['img']['name']
 ]);
-var_dump($server_name . '/uploads/' . $_FILES['img']['name']);
 
  
 if(!count($errors) && $_SERVER['REQUEST_METHOD'] == 'POST'){

@@ -4,7 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . './config.php';
 $errors = $arr;
 ?>
 
-<form class="form container <?=count($errors)?'form--invalid' : '' ?>" method="POST"> <!-- form--invalid -->
+<form class="form container <?=count($errors)?'form--invalid' : '' ?>" method="POST" enctype="multipart/form-data"> <!-- form--invalid -->
     <h2>Регистрация нового аккаунта</h2>
     <div class="form__item <?=isset($errors['email'])?'form__item--invalid':''?>"> <!-- form__item--invalid -->
       <label for="email">E-mail*</label>
@@ -26,12 +26,12 @@ $errors = $arr;
       <textarea id="message" name="message" placeholder="Напишите как с вами связаться" ><?=$_POST['message']?></textarea>
       <span class="form__error"><?=$errors['message']?></span>
     </div>
-    <div class="form__item form__item--file form__item--last<?=isset($errors['avatar'])?'form__item--invalid':''?>">
+    <div class="form__item form__item--file form__item--last <?=isset($_FILES['avatar']['name']) && !isset($errors['avatar'])?'form__item--uploaded':'form__item--invalid'?>">
       <label>Аватар</label>
       <div class="preview">
         <button class="preview__remove" type="button">x</button>
         <div class="preview__img">
-          <img src="img/avatar.jpg" width="113" height="113" alt="Ваш аватар">
+          <img src=<?=$server_name . '/uploads/' . $_FILES['avatar']['name']?> width="113" height="113" alt="Ваш аватар">
         </div>
       </div>
       <div class="form__input-file">

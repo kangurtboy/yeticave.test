@@ -16,8 +16,8 @@ $categories = ['Доски и лыжи' , "Крепления" , "Ботинки
 $title = "Главная";
 
 //Тестовый Ползователь 
-$user = [
+/* $user = [
 	"is_auth"=> (bool) rand(0, 1),
 	"name"=> 'Константин',
 	"avatar"=> $server_name . 'img/user.jpg'
-];
+]; */

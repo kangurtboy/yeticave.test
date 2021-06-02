@@ -43,6 +43,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		}
 	}
 }
+//Если ползовател авторизован то перенаправит на главную
+session_start();
+if(isset($_SESSION['user'])){
+	header('Location: /');
+}
 
 
 

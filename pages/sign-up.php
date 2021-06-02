@@ -29,5 +29,11 @@ $main_content = template_render('./templates/layout.php' , ['title'=>$title,
 'nav'=> $categories,
 ]);
 
+//Если ползовател авторизован то перенаправит на главную
+session_start();
+if(isset($_SESSION['user'])){
+	header('Location: /');
+}
+
 print($main_content);
 var_dump($_FILES['avatar']);

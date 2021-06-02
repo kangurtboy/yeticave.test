@@ -3,7 +3,9 @@ CREATE TABLE users (
 id INT AUTO_INCREMENT PRIMARY KEY ,
 name VARCHAR(128),
 email VARCHAR(128),
-password VARCHAR(64)
+password VARCHAR(64),
+avatar VARCHAR(128),
+contact_data VARCHAR(128)
 );
 
 /* лоты */

@@ -8,10 +8,10 @@ INSERT INTO categories (`name`) VALUES
 ('Разное');
 
 /* ползователи */
-INSERT INTO users(`name` , email , `password`) VALUES 
-('Игнат' , 'ignat.v@gmail.com' , '$2y$10$X8/DXv6m62aYPLt.Mimg9u9mkljtE5KRSsQDVG6YiUSQ6e2oy7Wr6'),
-('Леночка' , 'kitty_93@li.ru' , '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa'),
-('Руслан' , 'warrior07@mail.ru' , '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW');
+INSERT INTO users(avatar , `name` , email , `password`) VALUES 
+('' , 'Игнат' , 'ignat.v@gmail.com' , '$2y$10$X8/DXv6m62aYPLt.Mimg9u9mkljtE5KRSsQDVG6YiUSQ6e2oy7Wr6'),
+( '','Леночка' , 'kitty_93@li.ru' , '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa'),
+('avatar.jpg' , 'Руслан' , 'warrior07@mail.ru' , '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW');
 
 /* cnисок обявление */
 INSERT INTO lots(`name` , `description` , img , category_id , user_id , cost , min_cost , time_out) VALUES

@@ -29,7 +29,7 @@ require $_SERVER['DOCUMENT_ROOT'] . './data.php';
             </a>
         </div>
         <?if(isset($_SESSION['user'])) :?>
-		<a class="main-header__add-lot button" href=<?=$server_name . 'pages/add.php'?>>Добавить лот</a>
+		<a class="main-header__add-lot button" href=<?=$server_name . '/pages/add.php'?>>Добавить лот</a>
 		<?endif?>
         <div class="main-footer__developed-by">
             <span class="visually-hidden">Разработано:</span>

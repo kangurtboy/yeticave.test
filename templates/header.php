@@ -40,7 +40,7 @@ $title = $arr['title'];
 			<!-- здесь должен быть PHP код для показа аватара пользователя -->
 			<?php if($user_is_active) : ?>
 			<div class="user-menu__image">
-				<img src="<?=$user['avatar']?>" alt="Ползователь">
+				<img src="<?=$server_name . 'uploads/' . $user['avatar']?>" alt="Ползователь">
 			</div>
 			<div class="user-menu__logged">
 				<p><?=$user['name']?></p>

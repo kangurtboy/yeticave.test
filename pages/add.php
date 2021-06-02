@@ -35,7 +35,7 @@ if(isset($_SESSION['user'])){
 
 	$form_content = template_render('/templates/add_form.php' , $errors);
 }else{
-	$form_content = template_render('/templates/403.php' , []);
+	$form_content = template_render('/templates/error.php' , ['message'=>'Ошибка: Вы не можете получить доступ к этой странице']);
 }
 $card_content = template_render('/templates/lot.php' , [
 	'name'=> $lot['lot-name'],

@@ -21,6 +21,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 	if($img_check){
 		$errors['avatar'] = $img_check;
 	}
+
+//Поис ползователя на бд с таким email
+$search_user = "SELECT email from users WHERE email = ?";
+
+$search_result = mysql_simple($search_user,[$_POST['email']]);
+
+if(count($search_result)){
+	$errors['email'] = 'Ползовател с таким email - ом зарегистрирован!';
+}
+
+	if(!count($errors)){
+//Сохранение данных в бд
+	$sql = 'INSERT INTO users (avatar , name , email , password , contact_data) VALUES (? , ? , ? , ? , ?)';
+	$fields = [$_FILES['avatar']['name'] ,$_POST['name'], $_POST['email'],$_POST['password'] , $_POST['message']];
+ 	$save_user = mysql_simple($sql, $fields);
+
+	header('Location: /');
+}
 }
 $form_page = template_render('./templates/sign-up.php', $errors);
 
@@ -35,5 +53,5 @@ if(isset($_SESSION['user'])){
 	header('Location: /');
 }
 
+
 print($main_content);
-var_dump($_FILES['avatar']);

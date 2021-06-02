@@ -12,41 +12,23 @@ $errors = validate_fields($_POST ,[]);
 
 $email = $_POST['email'];
 $password =  $_POST['password'];
-$password_hash = password_hash($password ,PASSWORD_DEFAULT);
-$search_email = search_user_by_email($email , $users);
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	//проверка Email
-	if(!$search_email && $email !== ''){
+	$saved_email = mysql_simple("SELECT * FROM users WHERE email = ?",[$email]);
 
-		$errors['email'] = 'Не такого ползователя';
-
-	}elseif(!filter_var($email , FILTER_VALIDATE_EMAIL) && $email !== ''){
-
-		$errors['email'] = 'Введите правилный адрес электроный почту';
+	$saved_password = password_verify($password , $saved_email[0]['password']);
+	
+	if(!$saved_email){
+		$errors['email'] = 'Ползователь не найден';
+	}elseif(!$saved_password){
+		$errors['password'] = "Неверный пароль";
 	}
-
-
-	foreach ($users as $user) {
-		//поиск ползователя
-		if($email === $user['email']){
-			if(!password_verify($password, $user['password']) && $password !== ''){
-				$errors['password'] = 'Вы ввели неверный пароль';
-			}
-		}
-	if ($user['email'] === $email && password_verify($password, $user['password'])) {
-		//Если ползовател ввел корректный данные
-		header('Location: /');
+	if(!count($errors)){
 		session_start();
-		$_SESSION['user'] = $user;
-		
-		}
+		$_SESSION['user'] = $saved_email[0];
+		header('Location: /');
 	}
-}
-//Если ползовател авторизован то перенаправит на главную
-session_start();
-if(isset($_SESSION['user'])){
-	header('Location: /');
 }
 
 

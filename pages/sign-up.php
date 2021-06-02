@@ -34,7 +34,7 @@ if(count($search_result)){
 	if(!count($errors)){
 //Сохранение данных в бд
 	$sql = 'INSERT INTO users (avatar , name , email , password , contact_data) VALUES (? , ? , ? , ? , ?)';
-	$fields = [$_FILES['avatar']['name'] ,$_POST['name'], $_POST['email'],$_POST['password'] , $_POST['message']];
+	$fields = [$_FILES['avatar']['name'] ,$_POST['name'], $_POST['email'],password_hash($_POST['password'] ,PASSWORD_DEFAULT) , $_POST['message']];
  	$save_user = mysql_simple($sql, $fields);
 
 	header('Location: /');

@@ -25,7 +25,7 @@ if(!empty($_POST)){
 	}
 
 	//Проверка Изображение
-	$imgage_result = upload_img($_FILES['img'] ,  $documet_root . '/uploads/');
+	$imgage_result = upload_img($_FILES['img'] ,  $documet_root . '/img/');
 	if($imgage_result){
 		$errors['img'] = $imgage_result;
 	}
@@ -37,20 +37,20 @@ if(isset($_SESSION['user'])){
 }else{
 	$form_content = template_render('/templates/error.php' , ['message'=>'Ошибка: Вы не можете получить доступ к этой странице']);
 }
-$card_content = template_render('/templates/lot.php' , [
-	'name'=> $lot['lot-name'],
-	'category'=> $lot['category'],
-	'price' => $lot['lot-rate'],
-	'img_url' => $server_name . '/uploads/' . $_FILES['img']['name']
-]);
 
- 
+
 if(!count($errors) && $_SERVER['REQUEST_METHOD'] == 'POST'){
+
+	//Сохранение нового обявление в бд
+	$sql  = 'INSERT INTO lots (name , category_id , user_id , description , img , cost, min_cost , time_out) VALUES(? , ? , ? , ? , ? , ? , ? , ?)';
 	
-	//Отрисовка карточта лота
-	print(template_render('/templates/layout.php' , ['title'=> $lot['lot-name'],
-	'main_content'=> $card_content,
-	'nav'=> $categories]));
+	$category_id = mysqli_query($connection , "SELECT `id` FROM `categories` WHERE name = '$_POST[category]' ");
+	$category_id = mysqli_fetch_assoc($category_id)['id'];
+	$values = [$_POST['lot-name'] , $category_id , $_SESSION['user']['id'] ,$_POST['message'] , $_FILES['img']['name'] ,$_POST['lot-step'] ,$_POST['lot-rate'] ,$_POST['lot-date']];
+	$insert = mysql_simple($sql , $values);
+
+	header('Location: /');
+	
 }else{
 	//Отрисовка формы
 	print(template_render('/templates/layout.php' , ['title'=> 'Добавление нового лота',

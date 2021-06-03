@@ -23,7 +23,7 @@ function price_format($num)
 		$formated =  number_format($num, 0, '.', ' ') . " ₽";
 		return $formated;
 	} else {
-		return $num;
+		return $num . " ₽";
 	}
 };
 

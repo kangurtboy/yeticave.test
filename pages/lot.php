@@ -4,10 +4,17 @@ require_once '../functions.php';
 require_once '../data.php';
 require_once '../config.php';
 session_start();
-$currrent_lot = $open_lots[$_GET['lot']];
+$currrent_lot_id = $_GET['lot'];
+$currrent_lot = mysqli_query($connection , "SELECT * FROM lots WHERE $currrent_lot_id = id");
+$currrent_lot = mysqli_fetch_assoc($currrent_lot);
+
+$category = mysqli_query($connection , "SELECT name FROM categories WHERE $currrent_lot[category_id] = id");
+$category = mysqli_fetch_assoc($category)['name'];
+$rate_sql = "SELECT users.name , rates.price ,  rates.rate_date FROM users  JOIN rates ON $currrent_lot_id = rates.lot_id WHERE users.id = rates.user_id";
+$rates = mysqli_query($connection , $rate_sql);
+$rates = mysqli_fetch_all($rates, MYSQLI_ASSOC);
 
 //Сохранение история просмотра лотов в coockies
-$currrent_lot_id = array_search($currrent_lot , $open_lots);
 
 if (isset($_COOKIE['history'])) {
 
@@ -37,33 +44,24 @@ ob_start();
     <div class="lot-item__content">
       <div class="lot-item__left">
         <div class="lot-item__image">
-          <img src=<?=$server_name . $currrent_lot['img_url']?> width="730" height="548" alt="Сноуборд">
+          <img src=<?=$server_name .'img/'. $currrent_lot['img']?> width="730" height="548" alt="Сноуборд">
         </div>
-        <p class="lot-item__category">Категория: <span><?=$currrent_lot['category']?></span></p>
-        <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
-          снег
-          мощным щелчкоми четкими дугами. Стекловолокно Bi-Ax, уложенное в двух направлениях, наделяет этот
-          снаряд
-          отличной гибкостью и отзывчивостью, а симметричная геометрия в сочетании с классическим прогибом
-          кэмбер
-          позволит уверенно держать высокие скорости. А если к концу катального дня сил совсем не останется,
-          просто
-          посмотрите на Вашу доску и улыбнитесь, крутая графика от Шона Кливера еще никого не оставляла
-          равнодушным.</p>
+        <p class="lot-item__category">Категория: <span><?=$category?></span></p>
+        <p class="lot-item__description"><?=$currrent_lot['description']?></p>
       </div>
 	  <?if(isset($_SESSION['user'])) :?>
       <div class="lot-item__right">
         <div class="lot-item__state">
           <div class="lot-item__timer timer">
-		  <?=timer() ?>
+		  <?=$currrent_lot['time_out']?>
           </div>
           <div class="lot-item__cost-state">
             <div class="lot-item__rate">
               <span class="lot-item__amount">Текущая цена</span>
-              <span class="lot-item__cost"><?=$currrent_lot['price']?></span>
+              <span class="lot-item__cost"><?=price_format($currrent_lot['cost'])?></span>
             </div>
             <div class="lot-item__min-cost">
-              Мин. ставка <span><?=$currrent_lot['price'] / 10 ?></span>
+              Мин. ставка <span><?=price_format($currrent_lot['min_cost'])?></span>
             </div>
           </div>
           <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
@@ -75,14 +73,14 @@ ob_start();
           </form>
         </div>
         <div class="history">
-          <h3>История ставок (<span><?= count($bets) ?></span>)</h3>
+          <h3>История ставок (<span><?= count($rates) ?></span>)</h3>
           <table class="history__list">
 		  <?php 
 		  
-		  foreach($bets as $bet)
+		  foreach($rates as $rate)
 
 		/* перебор ставок */
-		print  (template_render('/templates/bet.php' , $bet));
+		print  (template_render('/templates/bet.php' , $rate));
 
 		 ?>
 			

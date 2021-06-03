@@ -5,11 +5,8 @@ require_once 'config.php';
 require_once 'data.php';
 //Главная страница
 
-$lots_query = mysqli_query($connection , 'SELECT * FROM lots');
+$lots_query = mysqli_query($connection , 'SELECT * FROM lots ORDER BY crate_date DESC');
 $open_lots = mysqli_fetch_all($lots_query, MYSQLI_ASSOC);
-
-// echo '<pre>';
-// print_r($open_lots);
 
 $page_content = template_render('./templates/index.php' , $open_lots);
 

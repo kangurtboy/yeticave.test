@@ -29,7 +29,7 @@ $title = $arr['title'];
             <img src=<?=$server_name .'img/logo.svg'?> width="160" height="39" alt="Логотип компании YetiCave">
         </a>
         <form class="main-header__search" method="get" action=<?=$server_name . 'pages/search.php'?>>
-            <input type="search" name="search" placeholder="Поиск лота">
+            <input type="search" name="search" placeholder="Поиск лота" value=<?=$_GET['search']?>>
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
 		</form>
 		<?if(isset($_SESSION['user'])) :?>

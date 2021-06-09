@@ -17,6 +17,7 @@ category_id INT ,
 user_id INT ,
 cost INT, 
 min_cost INT ,
+crate_date DATETIME DEFAULT NOW(),
 time_out DATE
 );
 
@@ -39,3 +40,5 @@ rate_date DATETIME DEFAULT NOW()
 CREATE INDEX lot_rate ON rate_history (user_id , price);
 CREATE INDEX user_email ON users (email);
 CREATE INDEX lot ON lots (id, user_id , name);
+/* Полнотекстовый индекс */
+CREATE FULLTEXT INDEX search_lots ON lots (name , description); 

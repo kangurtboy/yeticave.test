@@ -13,7 +13,8 @@ $page_content = template_render('./templates/index.php' , $open_lots);
 $content = template_render('./templates/layout.php' , [
 	'title' => 'Главная',
 	'main_content' => $page_content,
-	'nav'=> []
+	'nav'=> [],
+	'pagination' => []
 ]);
 
 print($content);

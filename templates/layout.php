@@ -16,6 +16,9 @@ print($content['main_content']);
 
  print ('</main>');
 
+ //Отрисовка пагинация
+ print(template_render( '/templates/pagination.php' ,$content['pagination']));
+
 // Отрисовка футер -->
 print ( template_render('/templates/footer.php',[]));
 

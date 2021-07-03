@@ -46,7 +46,7 @@ if(!count($errors) && $_SERVER['REQUEST_METHOD'] == 'POST'){
 	
 	$category_id = mysqli_query($connection , "SELECT `id` FROM `categories` WHERE name = '$_POST[category]' ");
 	$category_id = mysqli_fetch_assoc($category_id)['id'];
-	$values = [$_POST['lot-name'] , $category_id , $_SESSION['user']['id'] ,$_POST['message'] , $_FILES['img']['name'] ,$_POST['lot-step'] ,$_POST['lot-rate'] ,$_POST['lot-date']];
+	$values = [strip_tags($_POST['lot-name']) , $category_id , $_SESSION['user']['id'] , strip_tags ($_POST['message']) , $_FILES['img']['name'] ,$_POST['lot-step'] ,$_POST['lot-rate'] ,$_POST['lot-date']];
 	$insert = mysql_simple($sql , $values);
 
 	header('Location: /');

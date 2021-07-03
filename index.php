@@ -6,14 +6,14 @@ require_once 'config.php';
 require_once 'data.php';
 //Пагинация
 $cur_page = $_GET['page'] ?? 1;
-$items_count = mysql_simple('SELECT count(*) FROM lots' , [])[0]['count(*)'];
+$items_count = mysql_simple('SELECT count(*) FROM lots WHERE time_out >= CURRENT_DATE()' , [])[0]['count(*)'];
 $items_limit = 6;
 $page_count = (int) ceil($items_count / $items_limit); 
 $offset = ($cur_page - 1) * $items_limit;
 
 
 
-$lots_query = mysqli_query($connection , "SELECT * FROM lots ORDER BY crate_date DESC LIMIT $items_limit OFFSET $offset");
+$lots_query = mysqli_query($connection , "SELECT * FROM lots WHERE time_out >= CURRENT_DATE() ORDER BY crate_date DESC LIMIT $items_limit OFFSET $offset");
 if($lots_query){
 
 	$open_lots = mysqli_fetch_all($lots_query, MYSQLI_ASSOC);

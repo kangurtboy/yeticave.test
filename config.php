@@ -8,7 +8,7 @@
 //Корневой путь сервера для подключение php сценарии
 	$documet_root = $_SERVER['DOCUMENT_ROOT'];
 //подключение к база данных
-	$connection = mysqli_connect('localhost' , 'root' , 'root' , 'yeticave');
+	$connection = mysqli_connect('localhost' , 'root' , '' , 'yeticave');
 	if(!$connection){
 		print_r('Ошибка подключение:'. mysqli_connect_error());
 	}

@@ -37,7 +37,7 @@ rate_date DATETIME DEFAULT NOW()
 );
 
 /* индексация */
-CREATE INDEX lot_rate ON rate_history (user_id , price);
+CREATE INDEX lot_rate ON rates (user_id , price);
 CREATE INDEX user_email ON users (email);
 CREATE INDEX lot ON lots (id, user_id , name);
 /* Полнотекстовый индекс */
